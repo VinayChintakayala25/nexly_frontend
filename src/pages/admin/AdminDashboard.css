@@ -1,0 +1,554 @@
+/* =========================================================
+   ADMIN DASHBOARD
+========================================================= */
+
+.admin-dashboard-page {
+    min-height: 100vh;
+    padding: 42px 48px 70px;
+    background: #f6f8fc;
+    color: #172033;
+}
+
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+.admin-dashboard-header {
+    max-width: 1380px;
+    margin: 0 auto 34px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 30px;
+}
+
+.admin-header-content {
+    max-width: 800px;
+}
+
+.admin-eyebrow {
+    display: inline-block;
+    margin-bottom: 10px;
+    color: #4f46e5;
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+}
+
+.admin-header-content h1 {
+    margin: 0;
+    font-size: 38px;
+    line-height: 1.15;
+    font-weight: 800;
+    letter-spacing: -0.8px;
+}
+
+.admin-header-content p {
+    margin: 12px 0 0;
+    color: #6b7280;
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+.admin-refresh-button {
+    border: 1px solid #dce2ee;
+    background: #ffffff;
+    color: #172033;
+    padding: 12px 18px;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+}
+
+.admin-refresh-button:hover {
+    border-color: #4f46e5;
+    color: #4f46e5;
+    transform: translateY(-2px);
+    box-shadow: 0 7px 18px rgba(79, 70, 229, 0.1);
+}
+
+
+/* =========================================================
+   SECTION
+========================================================= */
+
+.admin-section {
+    max-width: 1380px;
+    margin: 0 auto 34px;
+}
+
+.admin-section-heading {
+    margin-bottom: 18px;
+}
+
+.admin-section-heading > div > span {
+    color: #7c83a0;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 1.3px;
+}
+
+.admin-section-heading h2 {
+    margin: 5px 0 0;
+    color: #172033;
+    font-size: 22px;
+    font-weight: 800;
+}
+
+.admin-section-heading p {
+    margin: 6px 0 0;
+    color: #718096;
+    font-size: 14px;
+}
+
+
+/* =========================================================
+   STATISTICS
+========================================================= */
+
+.admin-stat-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 18px;
+}
+
+.admin-stat-card {
+    padding: 23px;
+    background: #ffffff;
+    border: 1px solid #e3e7f0;
+    border-radius: 15px;
+    box-shadow: 0 5px 18px rgba(31, 41, 55, 0.035);
+    transition: all 0.25s ease;
+}
+
+.admin-stat-card:hover {
+    transform: translateY(-4px);
+    border-color: #d6d9f5;
+    box-shadow: 0 12px 28px rgba(31, 41, 55, 0.08);
+}
+
+.admin-stat-top {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.admin-stat-icon {
+    width: 42px;
+    height: 42px;
+    border-radius: 11px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 19px;
+}
+
+.users-icon {
+    background: #eef2ff;
+    color: #4f46e5;
+}
+
+.students-icon {
+    background: #ecfeff;
+    color: #0891b2;
+}
+
+.recruiters-icon {
+    background: #f3e8ff;
+    color: #9333ea;
+}
+
+.opportunities-icon {
+    background: #eff6ff;
+    color: #2563eb;
+}
+
+.published-icon {
+    background: #ecfdf5;
+    color: #059669;
+}
+
+.applications-icon {
+    background: #fff7ed;
+    color: #ea580c;
+}
+
+.selected-icon {
+    background: #fefce8;
+    color: #ca8a04;
+}
+
+.notifications-icon {
+    background: #fdf2f8;
+    color: #db2777;
+}
+
+.admin-stat-label {
+    color: #6b7280;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.admin-stat-card h3 {
+    margin: 20px 0 5px;
+    color: #172033;
+    font-size: 31px;
+    line-height: 1;
+    font-weight: 800;
+}
+
+.admin-stat-card p {
+    margin: 0;
+    color: #8a93a6;
+    font-size: 13px;
+}
+
+
+/* =========================================================
+   MANAGEMENT GRID
+========================================================= */
+
+.admin-management-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+}
+
+.admin-management-card {
+    min-height: 175px;
+    padding: 24px;
+    border: 1px solid #e2e6ef;
+    border-radius: 16px;
+    background: #ffffff;
+    text-align: left;
+    cursor: pointer;
+
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+
+    position: relative;
+    transition: all 0.25s ease;
+}
+
+.admin-management-card:hover {
+    transform: translateY(-4px);
+    border-color: #cfd3fa;
+    box-shadow: 0 14px 30px rgba(31, 41, 55, 0.08);
+}
+
+.management-card-icon {
+    width: 46px;
+    height: 46px;
+    flex-shrink: 0;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    border-radius: 12px;
+    background: #eef2ff;
+    color: #4f46e5;
+    font-size: 20px;
+}
+
+.management-card-content {
+    padding-right: 22px;
+}
+
+.management-card-content h3 {
+    margin: 2px 0 8px;
+    color: #172033;
+    font-size: 16px;
+    font-weight: 800;
+}
+
+.management-card-content p {
+    margin: 0;
+    color: #718096;
+    font-size: 13px;
+    line-height: 1.6;
+}
+
+.management-arrow {
+    position: absolute;
+    right: 20px;
+    bottom: 19px;
+
+    color: #4f46e5;
+    font-size: 20px;
+    font-weight: 700;
+
+    transition: transform 0.2s ease;
+}
+
+.admin-management-card:hover .management-arrow {
+    transform: translateX(4px);
+}
+
+
+/* =========================================================
+   PLATFORM STATUS
+========================================================= */
+
+.admin-platform-card {
+    max-width: 1380px;
+    margin: 5px auto 0;
+    padding: 23px 26px;
+
+    background: #ffffff;
+    border: 1px solid #dfe5ed;
+    border-radius: 16px;
+
+    display: flex;
+    align-items: center;
+    gap: 16px;
+
+    box-shadow: 0 5px 18px rgba(31, 41, 55, 0.035);
+}
+
+.platform-status-icon {
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: #ecfdf5;
+    color: #059669;
+    font-weight: 800;
+    font-size: 20px;
+}
+
+.platform-status-content {
+    flex: 1;
+}
+
+.platform-status-content > span {
+    color: #7c83a0;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 1.2px;
+}
+
+.platform-status-content h2 {
+    margin: 3px 0 2px;
+    color: #172033;
+    font-size: 16px;
+    font-weight: 800;
+}
+
+.platform-status-content p {
+    margin: 0;
+    color: #7a8497;
+    font-size: 13px;
+}
+
+.platform-status-badge {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    padding: 8px 12px;
+    border-radius: 999px;
+
+    background: #ecfdf5;
+    color: #047857;
+
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.platform-status-badge span {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #10b981;
+}
+
+
+/* =========================================================
+   LOADING
+========================================================= */
+
+.admin-loading {
+    min-height: 70vh;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    text-align: center;
+}
+
+.admin-loading-spinner {
+    width: 42px;
+    height: 42px;
+
+    border: 4px solid #e4e7f3;
+    border-top-color: #4f46e5;
+    border-radius: 50%;
+
+    animation: adminSpin 0.8s linear infinite;
+}
+
+.admin-loading h2 {
+    margin: 18px 0 5px;
+    color: #172033;
+    font-size: 20px;
+}
+
+.admin-loading p {
+    margin: 0;
+    color: #7b8496;
+    font-size: 14px;
+}
+
+@keyframes adminSpin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+
+/* =========================================================
+   ERROR
+========================================================= */
+
+.admin-error-card {
+    max-width: 520px;
+    min-height: 55vh;
+    margin: auto;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    text-align: center;
+}
+
+.admin-error-icon {
+    width: 58px;
+    height: 58px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    border-radius: 50%;
+
+    background: #fef2f2;
+    color: #dc2626;
+
+    font-size: 25px;
+    font-weight: 800;
+}
+
+.admin-error-card h2 {
+    margin: 18px 0 7px;
+    color: #172033;
+}
+
+.admin-error-card p {
+    margin: 0 0 20px;
+    color: #718096;
+    line-height: 1.6;
+}
+
+.admin-retry-button {
+    border: none;
+    border-radius: 9px;
+
+    padding: 11px 20px;
+
+    background: #4f46e5;
+    color: #ffffff;
+
+    font-size: 14px;
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition: all 0.2s ease;
+}
+
+.admin-retry-button:hover {
+    background: #4338ca;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 18px rgba(79, 70, 229, 0.22);
+}
+
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media (max-width: 1100px) {
+
+    .admin-stat-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .admin-management-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+
+@media (max-width: 700px) {
+
+    .admin-dashboard-page {
+        padding: 28px 18px 50px;
+    }
+
+    .admin-dashboard-header {
+        flex-direction: column;
+        margin-bottom: 28px;
+    }
+
+    .admin-header-content h1 {
+        font-size: 30px;
+    }
+
+    .admin-header-content p {
+        font-size: 14px;
+    }
+
+    .admin-refresh-button {
+        width: 100%;
+    }
+
+    .admin-stat-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .admin-management-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .admin-stat-card {
+        padding: 20px;
+    }
+
+    .admin-platform-card {
+        align-items: flex-start;
+        flex-wrap: wrap;
+        padding: 20px;
+    }
+
+    .platform-status-content {
+        min-width: calc(100% - 65px);
+    }
+
+    .platform-status-badge {
+        margin-left: 62px;
+    }
+}

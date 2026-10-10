@@ -1,0 +1,1531 @@
+/* ============================================================
+   NEXLY REGISTER PAGE
+   Professional full-screen registration
+   Desktop + Tablet + Mobile
+   ============================================================ */
+
+* {
+    box-sizing: border-box;
+}
+
+.nexly-register-page {
+    width: 100%;
+    min-height: 100vh;
+
+    display: flex;
+    flex-direction: column;
+
+    background: #ffffff;
+
+    color: #172033;
+
+    font-family:
+        Inter,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        Roboto,
+        Arial,
+        sans-serif;
+
+    overflow: hidden;
+}
+
+
+/* ============================================================
+   HEADER
+   ============================================================ */
+
+.nexly-register-navbar {
+    width: 100%;
+
+    height: 82px;
+    min-height: 82px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding:
+        0
+        7%;
+
+    background: #ffffff;
+
+    border-bottom:
+        1px solid #f0f2f5;
+
+    position: relative;
+
+    z-index: 20;
+}
+
+
+/* LOGO */
+
+.nexly-register-logo {
+    width: 190px;
+    height: 70px;
+
+    display: flex;
+    align-items: center;
+
+    text-decoration: none;
+
+    overflow: hidden;
+}
+
+
+.nexly-register-logo img {
+    width: 175px;
+    height: 62px;
+
+    object-fit: contain;
+
+    object-position: left center;
+
+    display: block;
+}
+
+
+/* HEADER RIGHT */
+
+.nexly-register-header-right {
+    display: flex;
+    align-items: center;
+
+    gap: 8px;
+
+    color: #6b7280;
+
+    font-size: 14px;
+}
+
+
+.nexly-register-login-link {
+    color: #2563eb;
+
+    font-weight: 700;
+
+    text-decoration: none;
+
+    transition: color 0.2s ease;
+}
+
+
+.nexly-register-login-link:hover {
+    color: #1749b5;
+
+    text-decoration: underline;
+}
+
+
+/* ============================================================
+   MAIN
+   ============================================================ */
+
+.nexly-register-main {
+    width: 100%;
+
+    flex: 1;
+
+    min-height: 0;
+
+    display: grid;
+
+    grid-template-columns:
+        52%
+        48%;
+
+    overflow: hidden;
+}
+
+
+/* ============================================================
+   LEFT SIDE
+   ============================================================ */
+
+.nexly-register-left {
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    align-items: center;
+
+    padding:
+        28px
+        6%
+        30px
+        8%;
+
+    background: #ffffff;
+
+    position: relative;
+
+    z-index: 5;
+}
+
+
+.nexly-register-content {
+    width: 100%;
+
+    max-width: 720px;
+
+    display: flex;
+    flex-direction: column;
+
+    justify-content: center;
+}
+
+
+/* ============================================================
+   BADGE
+   ============================================================ */
+
+.nexly-register-badge {
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    width: fit-content;
+
+    margin-bottom: 13px;
+
+    padding:
+        6px
+        12px;
+
+    border-radius: 30px;
+
+    background: #eff6ff;
+
+    color: #2563eb;
+
+    font-size: 11px;
+
+    font-weight: 700;
+}
+
+
+.nexly-register-dot {
+    width: 7px;
+    height: 7px;
+
+    border-radius: 50%;
+
+    background: #22c55e;
+
+    box-shadow:
+        0 0 0 4px rgba(34, 197, 94, 0.10);
+}
+
+
+/* ============================================================
+   HEADING
+   ============================================================ */
+
+.nexly-register-content h1 {
+    margin: 0;
+
+    max-width: 650px;
+
+    color: #182033;
+
+    font-size:
+        clamp(
+            40px,
+            3.5vw,
+            58px
+        );
+
+    line-height: 1.03;
+
+    letter-spacing: -2.5px;
+
+    font-weight: 700;
+}
+
+
+.nexly-register-content h1 span {
+    display: block;
+
+    color: #2563eb;
+}
+
+
+/* ============================================================
+   DESCRIPTION
+   ============================================================ */
+
+.nexly-register-description {
+    max-width: 650px;
+
+    margin:
+        15px
+        0
+        17px;
+
+    color: #687386;
+
+    font-size: 13px;
+
+    line-height: 1.55;
+}
+
+
+/* ============================================================
+   FEATURE CARDS
+   ============================================================ */
+
+.nexly-register-features {
+    width: 100%;
+
+    max-width: 690px;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 9px;
+
+    margin-bottom: 17px;
+}
+
+
+.nexly-register-feature {
+    min-height: 59px;
+
+    display: flex;
+
+    align-items: flex-start;
+
+    gap: 8px;
+
+    padding:
+        8px
+        9px;
+
+    border:
+        1px solid #e4e9f0;
+
+    border-radius: 9px;
+
+    background: #ffffff;
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        border-color 0.2s ease;
+}
+
+
+.nexly-register-feature:hover {
+    transform: translateY(-2px);
+
+    border-color: #cbd9ef;
+
+    box-shadow:
+        0 8px 22px rgba(37, 99, 235, 0.08);
+}
+
+
+.nexly-register-feature-icon {
+    width: 27px;
+    height: 27px;
+
+    min-width: 27px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 7px;
+
+    background: #f1f6ff;
+
+    font-size: 12px;
+}
+
+
+.nexly-register-feature strong {
+    display: block;
+
+    margin-bottom: 2px;
+
+    color: #273348;
+
+    font-size: 9px;
+
+    line-height: 1.25;
+}
+
+
+.nexly-register-feature span {
+    display: block;
+
+    color: #7a8495;
+
+    font-size: 8px;
+
+    line-height: 1.3;
+}
+
+
+/* ============================================================
+   FORM
+   ============================================================ */
+
+.nexly-register-form {
+    width: 100%;
+
+    max-width: 690px;
+}
+
+
+.nexly-register-row {
+    width: 100%;
+
+    display: grid;
+
+    grid-template-columns:
+        1fr
+        1fr;
+
+    gap: 10px;
+}
+
+
+.nexly-register-group {
+    width: 100%;
+
+    margin-bottom: 12px;
+}
+
+
+.nexly-register-group label {
+    display: block;
+
+    margin-bottom: 5px;
+
+    color: #273348;
+
+    font-size: 10px;
+
+    font-weight: 700;
+}
+
+
+.nexly-register-group label span {
+    color: #9aa4b2;
+
+    font-weight: 500;
+}
+
+
+/* ============================================================
+   INPUT
+   ============================================================ */
+
+.nexly-register-input-wrapper {
+    width: 100%;
+
+    height: 43px;
+
+    display: flex;
+
+    align-items: center;
+
+    position: relative;
+
+    border:
+        1px solid #d5dce5;
+
+    border-radius: 6px;
+
+    background: #ffffff;
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+
+.nexly-register-input-wrapper:focus-within {
+    border-color: #2563eb;
+
+    box-shadow:
+        0 0 0 3px rgba(37, 99, 235, 0.08);
+}
+
+
+.nexly-input-icon {
+    width: 34px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    color: #9aa8bd;
+
+    font-size: 10px;
+
+    font-weight: 700;
+}
+
+
+.nexly-register-input-wrapper input,
+.nexly-register-input-wrapper select {
+    flex: 1;
+
+    width: 100%;
+
+    height: 100%;
+
+    padding:
+        0
+        9px
+        0
+        0;
+
+    border: none;
+
+    outline: none;
+
+    background: transparent;
+
+    color: #273348;
+
+    font-family: inherit;
+
+    font-size: 11px;
+}
+
+
+.nexly-register-input-wrapper input::placeholder {
+    color: #a2adbb;
+}
+
+
+.nexly-register-input-wrapper select {
+    cursor: pointer;
+
+    appearance: auto;
+}
+
+
+/* ============================================================
+   PASSWORD SHOW/HIDE
+   ============================================================ */
+
+.nexly-password-toggle {
+    border: none;
+
+    padding:
+        0
+        9px;
+
+    background: transparent;
+
+    color: #2563eb;
+
+    font-size: 9px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+}
+
+
+.nexly-password-toggle:hover {
+    text-decoration: underline;
+}
+
+
+/* ============================================================
+   ERROR
+   ============================================================ */
+
+.nexly-register-error {
+    display: flex;
+
+    align-items: center;
+
+    gap: 7px;
+
+    margin:
+        2px
+        0
+        10px;
+
+    padding:
+        8px
+        10px;
+
+    border:
+        1px solid #fecaca;
+
+    border-radius: 6px;
+
+    background: #fff5f5;
+
+    color: #b42318;
+
+    font-size: 10px;
+}
+
+
+.nexly-register-error span {
+    width: 17px;
+    height: 17px;
+
+    min-width: 17px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: #dc2626;
+
+    color: #ffffff;
+
+    font-size: 9px;
+
+    font-weight: 800;
+}
+
+
+/* ============================================================
+   SUCCESS
+   ============================================================ */
+
+.nexly-register-success {
+    display: flex;
+
+    align-items: center;
+
+    gap: 7px;
+
+    margin:
+        2px
+        0
+        10px;
+
+    padding:
+        8px
+        10px;
+
+    border:
+        1px solid #bbf7d0;
+
+    border-radius: 6px;
+
+    background: #f0fdf4;
+
+    color: #15803d;
+
+    font-size: 10px;
+}
+
+
+.nexly-register-success span {
+    font-weight: 800;
+}
+
+
+/* ============================================================
+   CREATE ACCOUNT
+   ============================================================ */
+
+.nexly-create-account-button {
+    width: 100%;
+
+    height: 45px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 9px;
+
+    border: none;
+
+    border-radius: 7px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #2563eb,
+            #4f46e5
+        );
+
+    color: #ffffff;
+
+    font-size: 11px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 8px 20px rgba(37, 99, 235, 0.20);
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        filter 0.2s ease;
+}
+
+
+.nexly-create-account-button:hover:not(:disabled) {
+    transform: translateY(-2px);
+
+    filter: brightness(1.03);
+
+    box-shadow:
+        0 12px 25px rgba(37, 99, 235, 0.27);
+}
+
+
+.nexly-create-account-button:disabled {
+    opacity: 0.7;
+
+    cursor: not-allowed;
+}
+
+
+/* ============================================================
+   SPINNER
+   ============================================================ */
+
+.nexly-register-spinner {
+    width: 14px;
+    height: 14px;
+
+    border:
+        2px solid rgba(255, 255, 255, 0.35);
+
+    border-top-color: #ffffff;
+
+    border-radius: 50%;
+
+    animation:
+        nexlyRegisterSpin 0.7s linear infinite;
+}
+
+
+@keyframes nexlyRegisterSpin {
+
+    to {
+        transform: rotate(360deg);
+    }
+
+}
+
+
+/* ============================================================
+   DIVIDER
+   ============================================================ */
+
+.nexly-register-divider {
+    width: 100%;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 9px;
+
+    margin:
+        13px
+        0
+        8px;
+}
+
+
+.nexly-register-divider span {
+    flex: 1;
+
+    height: 1px;
+
+    background: #e6e9ee;
+}
+
+
+.nexly-register-divider p {
+    margin: 0;
+
+    color: #a0a8b5;
+
+    font-size: 8px;
+
+    white-space: nowrap;
+}
+
+
+/* ============================================================
+   SIGN IN BUTTON
+   ============================================================ */
+
+.nexly-register-signin-button {
+    width: 100%;
+
+    height: 38px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border:
+        1px solid #d9e0e8;
+
+    border-radius: 6px;
+
+    background: #ffffff;
+
+    color: #2563eb;
+
+    font-size: 10px;
+
+    font-weight: 700;
+
+    text-decoration: none;
+
+    transition:
+        background 0.2s ease,
+        border-color 0.2s ease,
+        transform 0.2s ease;
+}
+
+
+.nexly-register-signin-button:hover {
+    background: #f8faff;
+
+    border-color: #b9c9e8;
+
+    transform: translateY(-1px);
+}
+
+
+/* ============================================================
+   SECURITY NOTE
+   ============================================================ */
+
+.nexly-security-note {
+    margin:
+        9px
+        0
+        0;
+
+    text-align: center;
+
+    color: #a2aab6;
+
+    font-size: 7px;
+
+    line-height: 1.4;
+}
+
+
+/* ============================================================
+   RIGHT ANIMATION
+   ============================================================ */
+
+.nexly-register-right {
+    width: 100%;
+    height: 100%;
+
+    min-width: 0;
+
+    position: relative;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: flex-end;
+
+    overflow: hidden;
+
+    background: #ffffff;
+}
+
+
+.nexly-register-animation-wrapper {
+    width: 100%;
+    height: 100%;
+
+    position: relative;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: flex-end;
+
+    overflow: hidden;
+}
+
+
+.nexly-register-animation {
+    position: absolute;
+
+    width: 120%;
+    height: 120%;
+
+    right: -8%;
+    top: -10%;
+
+    display: block;
+
+    object-fit: cover;
+
+    object-position: center;
+
+    border: none;
+
+    outline: none;
+
+    box-shadow: none;
+
+    /*
+       Rounded / soft left edge.
+    */
+
+    border-radius:
+        50% 0 0 50%;
+
+    /*
+       Fade image into the form side.
+    */
+
+    -webkit-mask-image:
+        linear-gradient(
+            to right,
+            transparent 0%,
+            rgba(0, 0, 0, 0.15) 8%,
+            rgba(0, 0, 0, 0.60) 18%,
+            #000000 30%,
+            #000000 100%
+        );
+
+    mask-image:
+        linear-gradient(
+            to right,
+            transparent 0%,
+            rgba(0, 0, 0, 0.15) 8%,
+            rgba(0, 0, 0, 0.60) 18%,
+            #000000 30%,
+            #000000 100%
+        );
+
+    /*
+       ENTRY
+    */
+
+    animation:
+        nexlyRegisterImageEntry
+        1.35s
+        cubic-bezier(0.16, 1, 0.3, 1)
+        both,
+
+        nexlyRegisterImageFloat
+        7s
+        ease-in-out
+        1.35s
+        infinite;
+}
+
+
+/* ============================================================
+   IMAGE ENTRY
+   ============================================================ */
+
+@keyframes nexlyRegisterImageEntry {
+
+    0% {
+        opacity: 0;
+
+        transform:
+            translateX(120px)
+            scale(0.90);
+    }
+
+    40% {
+        opacity: 0.50;
+
+        transform:
+            translateX(55px)
+            scale(0.95);
+    }
+
+    75% {
+        opacity: 0.90;
+
+        transform:
+            translateX(12px)
+            scale(1.01);
+    }
+
+    100% {
+        opacity: 1;
+
+        transform:
+            translateX(0)
+            scale(1);
+    }
+
+}
+
+
+/* ============================================================
+   FLOATING ANIMATION
+   ============================================================ */
+
+@keyframes nexlyRegisterImageFloat {
+
+    0% {
+        transform:
+            translateY(0)
+            scale(1);
+    }
+
+    50% {
+        transform:
+            translateY(-8px)
+            scale(1.008);
+    }
+
+    100% {
+        transform:
+            translateY(0)
+            scale(1);
+    }
+
+}
+
+
+/* ============================================================
+   SOFT GLOW
+   ============================================================ */
+
+.nexly-register-animation-wrapper::after {
+    content: "";
+
+    position: absolute;
+
+    inset: 0;
+
+    pointer-events: none;
+
+    background:
+        radial-gradient(
+            circle at 70% 50%,
+            rgba(37, 99, 235, 0.035),
+            transparent 50%
+        );
+
+    animation:
+        nexlyRegisterGlow
+        5s
+        ease-in-out
+        infinite alternate;
+}
+
+
+@keyframes nexlyRegisterGlow {
+
+    from {
+        opacity: 0.4;
+    }
+
+    to {
+        opacity: 1;
+    }
+
+}
+
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+
+.nexly-register-footer {
+    height: 38px;
+    min-height: 38px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 8px;
+
+    color: #9aa3b2;
+
+    font-size: 9px;
+
+    background: #ffffff;
+}
+
+
+/* ============================================================
+   LARGE DESKTOP
+   ============================================================ */
+
+@media (min-width: 1400px) {
+
+    .nexly-register-navbar {
+        padding:
+            0
+            8%;
+    }
+
+
+    .nexly-register-main {
+        grid-template-columns:
+            51%
+            49%;
+    }
+
+
+    .nexly-register-left {
+        padding:
+            25px
+            7%
+            28px
+            9%;
+    }
+
+
+    .nexly-register-content h1 {
+        font-size: 62px;
+    }
+
+
+    .nexly-register-animation {
+        width: 125%;
+        height: 125%;
+
+        right: -10%;
+        top: -12%;
+    }
+
+}
+
+
+/* ============================================================
+   LAPTOP
+   ============================================================ */
+
+@media (max-width: 1200px) {
+
+    .nexly-register-navbar {
+        padding:
+            0
+            5%;
+    }
+
+
+    .nexly-register-main {
+        grid-template-columns:
+            53%
+            47%;
+    }
+
+
+    .nexly-register-left {
+        padding:
+            24px
+            5%
+            28px
+            6%;
+    }
+
+
+    .nexly-register-content h1 {
+        font-size: 48px;
+
+        letter-spacing: -2px;
+    }
+
+
+    .nexly-register-description {
+        font-size: 12px;
+    }
+
+
+    .nexly-register-animation {
+        width: 125%;
+        height: 125%;
+
+        right: -12%;
+    }
+
+}
+
+
+/* ============================================================
+   TABLET
+   ============================================================ */
+
+@media (max-width: 900px) {
+
+    .nexly-register-page {
+        overflow-y: auto;
+    }
+
+
+    .nexly-register-navbar {
+        height: 72px;
+        min-height: 72px;
+
+        padding:
+            0
+            28px;
+    }
+
+
+    .nexly-register-main {
+        display: flex;
+
+        flex-direction: column;
+
+        overflow: visible;
+    }
+
+
+    .nexly-register-left {
+        width: 100%;
+
+        height: auto;
+
+        padding:
+            42px
+            8%
+            35px;
+    }
+
+
+    .nexly-register-content {
+        max-width: 700px;
+
+        margin: auto;
+    }
+
+
+    .nexly-register-content h1 {
+        font-size: 48px;
+    }
+
+
+    .nexly-register-right {
+        width: 100%;
+
+        height: 470px;
+
+        min-height: 470px;
+
+        overflow: hidden;
+    }
+
+
+    .nexly-register-animation {
+        width: 108%;
+        height: 120%;
+
+        right: -3%;
+        top: -8%;
+
+        border-radius:
+            42% 0 0 42%;
+    }
+
+
+    .nexly-register-footer {
+        display: none;
+    }
+
+}
+
+
+/* ============================================================
+   MOBILE
+   ============================================================ */
+
+@media (max-width: 600px) {
+
+    .nexly-register-page {
+        overflow-y: auto;
+    }
+
+
+    .nexly-register-navbar {
+        height: 65px;
+        min-height: 65px;
+
+        padding:
+            0
+            16px;
+    }
+
+
+    .nexly-register-logo {
+        width: 145px;
+        height: 58px;
+    }
+
+
+    .nexly-register-logo img {
+        width: 145px;
+        height: 55px;
+    }
+
+
+    .nexly-register-header-right {
+        font-size: 10px;
+    }
+
+
+    .nexly-register-main {
+        display: flex;
+
+        flex-direction: column;
+
+        overflow: visible;
+    }
+
+
+    .nexly-register-left {
+        width: 100%;
+
+        height: auto;
+
+        padding:
+            30px
+            18px
+            35px;
+    }
+
+
+    .nexly-register-content h1 {
+        font-size:
+            clamp(
+                34px,
+                10vw,
+                44px
+            );
+
+        line-height: 1.05;
+
+        letter-spacing: -1.7px;
+    }
+
+
+    .nexly-register-description {
+        margin:
+            15px
+            0
+            20px;
+
+        font-size: 13px;
+
+        line-height: 1.6;
+    }
+
+
+    /* FEATURES */
+
+    .nexly-register-features {
+        grid-template-columns: 1fr;
+
+        gap: 8px;
+
+        margin-bottom: 21px;
+    }
+
+
+    .nexly-register-feature {
+        min-height: 54px;
+
+        padding: 8px;
+    }
+
+
+    /* FORM */
+
+    .nexly-register-row {
+        grid-template-columns: 1fr;
+
+        gap: 0;
+    }
+
+
+    .nexly-register-group {
+        margin-bottom: 13px;
+    }
+
+
+    .nexly-register-input-wrapper {
+        height: 49px;
+    }
+
+
+    .nexly-register-input-wrapper input,
+    .nexly-register-input-wrapper select {
+        font-size: 14px;
+    }
+
+
+    .nexly-create-account-button {
+        height: 52px;
+
+        font-size: 13px;
+    }
+
+
+    .nexly-register-signin-button {
+        height: 46px;
+
+        font-size: 12px;
+    }
+
+
+    /* ANIMATION */
+
+    .nexly-register-right {
+        width: 100%;
+
+        height: 350px;
+
+        min-height: 350px;
+
+        overflow: hidden;
+    }
+
+
+    .nexly-register-animation {
+        width: 128%;
+        height: 128%;
+
+        right: -14%;
+        top: -13%;
+
+        border-radius:
+            45% 0 0 45%;
+
+        -webkit-mask-image:
+            linear-gradient(
+                to right,
+                transparent 0%,
+                rgba(0, 0, 0, 0.20) 12%,
+                #000000 30%,
+                #000000 100%
+            );
+
+        mask-image:
+            linear-gradient(
+                to right,
+                transparent 0%,
+                rgba(0, 0, 0, 0.20) 12%,
+                #000000 30%,
+                #000000 100%
+            );
+    }
+
+
+    .nexly-register-footer {
+        display: none;
+    }
+
+}
+
+
+/* ============================================================
+   SMALL PHONES
+   ============================================================ */
+
+@media (max-width: 400px) {
+
+    .nexly-register-navbar {
+        padding:
+            0
+            12px;
+    }
+
+
+    .nexly-register-logo {
+        width: 125px;
+        height: 55px;
+    }
+
+
+    .nexly-register-logo img {
+        width: 125px;
+        height: 52px;
+    }
+
+
+    .nexly-register-header-right {
+        font-size: 9px;
+    }
+
+
+    .nexly-register-left {
+        padding:
+            26px
+            14px
+            30px;
+    }
+
+
+    .nexly-register-content h1 {
+        font-size: 31px;
+    }
+
+
+    .nexly-register-description {
+        font-size: 12px;
+    }
+
+
+    .nexly-register-right {
+        height: 300px;
+
+        min-height: 300px;
+    }
+
+
+    .nexly-register-animation {
+        width: 135%;
+        height: 135%;
+
+        right: -17%;
+        top: -16%;
+    }
+
+}
+
+
+/* ============================================================
+   REDUCE MOTION
+   ============================================================ */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .nexly-register-animation,
+    .nexly-register-animation-wrapper::after,
+    .nexly-register-spinner {
+        animation: none !important;
+    }
+
+}

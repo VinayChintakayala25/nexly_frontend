@@ -1,0 +1,553 @@
+/* =========================================================
+   NEXLY SIDEBAR
+   ========================================================= */
+
+.nexly-sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    width: 250px;
+    height: 100vh;
+
+    background: #ffffff;
+
+    border-right: 1px solid #e8edf5;
+
+    display: flex;
+    flex-direction: column;
+
+    z-index: 1000;
+
+    box-shadow: 4px 0 24px rgba(15, 23, 42, 0.035);
+
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+/* =========================================================
+   BRAND
+   ========================================================= */
+
+.nexly-sidebar-brand {
+    height: 82px;
+
+    padding: 0 20px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    border-bottom: 1px solid #eef1f6;
+}
+
+.nexly-logo-button {
+    border: none;
+    background: transparent;
+
+    padding: 0;
+
+    cursor: pointer;
+
+    display: flex;
+    align-items: center;
+}
+
+.nexly-sidebar-logo {
+    width: 125px;
+    height: auto;
+
+    object-fit: contain;
+
+    display: block;
+
+    transition:
+        transform 0.25s ease,
+        opacity 0.25s ease;
+}
+
+.nexly-logo-button:hover .nexly-sidebar-logo {
+    transform: translateY(-1px);
+    opacity: 0.9;
+}
+
+.nexly-sidebar-close {
+    display: none;
+
+    border: none;
+    background: transparent;
+
+    font-size: 28px;
+
+    color: #64748b;
+
+    cursor: pointer;
+}
+
+/* =========================================================
+   USER
+   ========================================================= */
+
+.nexly-sidebar-user {
+    margin: 20px 16px 14px;
+
+    padding: 12px;
+
+    border-radius: 14px;
+
+    background: linear-gradient(
+        135deg,
+        #f7f9ff,
+        #f9fbff
+    );
+
+    border: 1px solid #edf1f8;
+
+    display: flex;
+    align-items: center;
+
+    gap: 11px;
+
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+.nexly-sidebar-user:hover {
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 8px 20px rgba(37, 99, 235, 0.08);
+}
+
+.nexly-user-avatar {
+    width: 38px;
+    height: 38px;
+
+    min-width: 38px;
+
+    border-radius: 11px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    color: #ffffff;
+
+    font-size: 14px;
+    font-weight: 700;
+
+    background:
+        linear-gradient(
+            135deg,
+            #2563eb,
+            #4f46e5
+        );
+
+    box-shadow:
+        0 5px 14px rgba(37, 99, 235, 0.25);
+}
+
+.nexly-user-info {
+    min-width: 0;
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 3px;
+}
+
+.nexly-user-info strong {
+    color: #172033;
+
+    font-size: 13px;
+    font-weight: 700;
+
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.nexly-user-info span {
+    color: #8a95a8;
+
+    font-size: 11px;
+    font-weight: 500;
+}
+
+/* =========================================================
+   NAVIGATION
+   ========================================================= */
+
+.nexly-sidebar-nav {
+    flex: 1;
+
+    padding: 4px 13px;
+
+    overflow-y: auto;
+}
+
+.nexly-sidebar-nav::-webkit-scrollbar {
+    width: 4px;
+}
+
+.nexly-sidebar-nav::-webkit-scrollbar-thumb {
+    background: #dce3ef;
+    border-radius: 20px;
+}
+
+.nexly-nav-label {
+    padding: 9px 12px 8px;
+
+    color: #a0a9b8;
+
+    font-size: 10px;
+    font-weight: 800;
+
+    letter-spacing: 0.12em;
+}
+
+.nexly-sidebar-link {
+    position: relative;
+
+    min-height: 45px;
+
+    margin: 3px 0;
+
+    padding: 0 13px;
+
+    border-radius: 11px;
+
+    color: #647084;
+
+    text-decoration: none;
+
+    display: flex;
+    align-items: center;
+
+    gap: 12px;
+
+    font-size: 13px;
+    font-weight: 600;
+
+    transition:
+        color 0.2s ease,
+        background 0.2s ease,
+        transform 0.2s ease;
+}
+
+.nexly-sidebar-link:hover {
+    color: #2563eb;
+
+    background: #f4f7ff;
+
+    transform: translateX(3px);
+}
+
+.nexly-sidebar-link-active {
+    color: #2563eb;
+
+    background:
+        linear-gradient(
+            90deg,
+            #edf4ff,
+            #f6f8ff
+        );
+}
+
+.nexly-sidebar-link-active::before {
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+    top: 9px;
+    bottom: 9px;
+
+    width: 3px;
+
+    border-radius: 0 4px 4px 0;
+
+    background: #2563eb;
+}
+
+.nexly-sidebar-icon {
+    width: 24px;
+    height: 24px;
+
+    min-width: 24px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 7px;
+
+    font-size: 16px;
+
+    transition:
+        transform 0.2s ease,
+        background 0.2s ease;
+}
+
+.nexly-sidebar-link:hover .nexly-sidebar-icon {
+    transform: scale(1.08);
+}
+
+.nexly-sidebar-link-active .nexly-sidebar-icon {
+    background: rgba(37, 99, 235, 0.09);
+}
+
+.nexly-sidebar-text {
+    white-space: nowrap;
+}
+
+/* =========================================================
+   BOTTOM
+   ========================================================= */
+
+.nexly-sidebar-bottom {
+    padding: 10px 14px 16px;
+}
+
+.nexly-sidebar-divider {
+    height: 1px;
+
+    background: #edf0f5;
+
+    margin: 0 4px 12px;
+}
+
+.nexly-logout-button {
+    width: 100%;
+
+    border: none;
+    background: transparent;
+
+    min-height: 44px;
+
+    padding: 0 13px;
+
+    border-radius: 11px;
+
+    color: #6b7280;
+
+    cursor: pointer;
+
+    display: flex;
+    align-items: center;
+
+    gap: 12px;
+
+    font-family: inherit;
+
+    font-size: 13px;
+    font-weight: 600;
+
+    transition:
+        color 0.2s ease,
+        background 0.2s ease,
+        transform 0.2s ease;
+}
+
+.nexly-logout-button:hover {
+    color: #dc2626;
+
+    background: #fff5f5;
+
+    transform: translateX(3px);
+}
+
+.nexly-sidebar-footer {
+    padding: 14px 6px 0;
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 3px;
+
+    color: #a2aab7;
+
+    font-size: 9px;
+
+    line-height: 1.4;
+}
+
+/* =========================================================
+   MOBILE TOP BAR
+   ========================================================= */
+
+.nexly-mobile-topbar {
+    display: none;
+}
+
+/* =========================================================
+   OVERLAY
+   ========================================================= */
+
+.nexly-sidebar-overlay {
+    display: none;
+}
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 900px) {
+    .nexly-sidebar {
+        width: 265px;
+
+        transform: translateX(-105%);
+
+        box-shadow:
+            12px 0 40px rgba(15, 23, 42, 0.16);
+    }
+
+    .nexly-sidebar-open {
+        transform: translateX(0);
+    }
+
+    .nexly-sidebar-close {
+        display: block;
+    }
+
+    .nexly-sidebar-overlay {
+        position: fixed;
+
+        inset: 0;
+
+        display: block;
+
+        background: rgba(15, 23, 42, 0.38);
+
+        backdrop-filter: blur(3px);
+
+        z-index: 999;
+
+        animation: nexlyOverlayIn 0.25s ease;
+    }
+
+    .nexly-mobile-topbar {
+        position: fixed;
+
+        top: 0;
+        left: 0;
+        right: 0;
+
+        height: 64px;
+
+        background: rgba(255, 255, 255, 0.96);
+
+        backdrop-filter: blur(14px);
+
+        border-bottom: 1px solid #e8edf5;
+
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        padding: 0 16px;
+
+        z-index: 900;
+
+        box-shadow:
+            0 4px 20px rgba(15, 23, 42, 0.05);
+    }
+
+    .nexly-mobile-menu-button,
+    .nexly-mobile-profile {
+        width: 38px;
+        height: 38px;
+
+        border: none;
+
+        border-radius: 10px;
+
+        cursor: pointer;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        font-family: inherit;
+    }
+
+    .nexly-mobile-menu-button {
+        background: #f2f5fa;
+
+        color: #334155;
+
+        font-size: 19px;
+    }
+
+    .nexly-mobile-profile {
+        background:
+            linear-gradient(
+                135deg,
+                #2563eb,
+                #4f46e5
+            );
+
+        color: #ffffff;
+
+        font-size: 13px;
+        font-weight: 700;
+    }
+
+    .nexly-mobile-brand {
+        border: none;
+        background: transparent;
+
+        padding: 0;
+
+        cursor: pointer;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .nexly-mobile-brand img {
+        width: 100px;
+        height: auto;
+
+        display: block;
+    }
+}
+
+@media (max-width: 480px) {
+    .nexly-mobile-topbar {
+        height: 58px;
+
+        padding: 0 12px;
+    }
+
+    .nexly-mobile-menu-button,
+    .nexly-mobile-profile {
+        width: 36px;
+        height: 36px;
+    }
+
+    .nexly-mobile-brand img {
+        width: 92px;
+    }
+
+    .nexly-sidebar {
+        width: min(285px, 84vw);
+    }
+}
+
+/* =========================================================
+   ANIMATIONS
+   ========================================================= */
+
+@keyframes nexlyOverlayIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}

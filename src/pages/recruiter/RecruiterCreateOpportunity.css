@@ -1,0 +1,385 @@
+.create-opportunity-page {
+    min-height: 100vh;
+    padding: 30px;
+    background: #f6f8fc;
+}
+
+/* ============================================
+   HEADER
+============================================ */
+
+.create-opportunity-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 20px;
+    margin-bottom: 28px;
+}
+
+.create-page-label {
+    display: inline-block;
+    margin-bottom: 8px;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    color: #4f46e5;
+}
+
+.create-opportunity-header h1 {
+    margin: 0;
+    color: #172033;
+    font-size: 30px;
+    font-weight: 750;
+}
+
+.create-opportunity-header p {
+    margin: 8px 0 0;
+    color: #6b7280;
+    font-size: 15px;
+}
+
+.back-dashboard-button {
+    padding: 11px 17px;
+    border: 1px solid #d9def0;
+    border-radius: 10px;
+    background: white;
+    color: #263043;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+.back-dashboard-button:hover {
+    border-color: #4f46e5;
+    color: #4f46e5;
+    transform: translateY(-1px);
+}
+
+
+/* ============================================
+   CARD
+============================================ */
+
+.create-opportunity-card {
+    max-width: 1050px;
+    padding: 28px;
+    background: white;
+    border: 1px solid #e5e9f2;
+    border-radius: 16px;
+    box-shadow: 0 5px 25px rgba(31, 41, 55, 0.05);
+}
+
+.form-card-heading {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding-bottom: 22px;
+    margin-bottom: 24px;
+    border-bottom: 1px solid #edf0f5;
+}
+
+.form-heading-icon {
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    border-radius: 12px;
+    background: #eef2ff;
+    color: #4f46e5;
+    font-size: 24px;
+    font-weight: 600;
+}
+
+.form-card-heading h2 {
+    margin: 0;
+    color: #20283a;
+    font-size: 19px;
+}
+
+.form-card-heading p {
+    margin: 5px 0 0;
+    color: #7a8292;
+    font-size: 13px;
+}
+
+
+/* ============================================
+   SUCCESS / ERROR
+============================================ */
+
+.form-success,
+.form-error {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 22px;
+    padding: 13px 15px;
+    border-radius: 10px;
+}
+
+.form-success {
+    background: #ecfdf5;
+    border: 1px solid #bbf7d0;
+    color: #047857;
+}
+
+.form-error {
+    background: #fef2f2;
+    border: 1px solid #fecaca;
+    color: #b91c1c;
+}
+
+.form-success span,
+.form-error span {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 25px;
+    height: 25px;
+    flex-shrink: 0;
+    border-radius: 50%;
+    font-weight: 700;
+}
+
+.form-success span {
+    background: #d1fae5;
+}
+
+.form-error span {
+    background: #fee2e2;
+}
+
+.form-success p,
+.form-error p {
+    margin: 0;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+
+/* ============================================
+   FORM
+============================================ */
+
+.opportunity-form {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 22px 20px;
+}
+
+.form-field {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-field.full-width {
+    grid-column: 1 / -1;
+}
+
+.form-field label {
+    margin-bottom: 8px;
+    color: #263043;
+    font-size: 13px;
+    font-weight: 650;
+}
+
+.required {
+    margin-left: 3px;
+    color: #dc2626;
+}
+
+.form-field input,
+.form-field select,
+.form-field textarea {
+    width: 100%;
+    box-sizing: border-box;
+    border: 1px solid #dce2ed;
+    border-radius: 10px;
+    background: #ffffff;
+    color: #20283a;
+    font-family: inherit;
+    font-size: 14px;
+    outline: none;
+    transition: 0.2s ease;
+}
+
+.form-field input,
+.form-field select {
+    height: 48px;
+    padding: 0 14px;
+}
+
+.form-field textarea {
+    padding: 13px 14px;
+    resize: vertical;
+    line-height: 1.55;
+}
+
+.form-field input::placeholder,
+.form-field textarea::placeholder {
+    color: #a2aabd;
+}
+
+.form-field input:focus,
+.form-field select:focus,
+.form-field textarea:focus {
+    border-color: #6366f1;
+    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+}
+
+.form-field input:disabled,
+.form-field select:disabled,
+.form-field textarea:disabled {
+    background: #f8fafc;
+    cursor: not-allowed;
+}
+
+.field-hint {
+    margin-top: 6px;
+    color: #9299a8;
+    font-size: 11px;
+    line-height: 1.4;
+}
+
+
+/* ============================================
+   ACTIONS
+============================================ */
+
+.form-actions {
+    grid-column: 1 / -1;
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+    padding-top: 22px;
+    margin-top: 3px;
+    border-top: 1px solid #edf0f5;
+}
+
+.cancel-button,
+.publish-button {
+    min-height: 46px;
+    padding: 0 20px;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 650;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+.cancel-button {
+    border: 1px solid #d9def0;
+    background: white;
+    color: #4b5563;
+}
+
+.cancel-button:hover {
+    border-color: #aeb7ca;
+    background: #f8fafc;
+}
+
+.publish-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    border: none;
+    background: linear-gradient(
+        135deg,
+        #2563eb,
+        #4f46e5
+    );
+    color: white;
+    box-shadow: 0 6px 16px rgba(79, 70, 229, 0.2);
+}
+
+.publish-button:hover:not(:disabled) {
+    transform: translateY(-1px);
+    box-shadow: 0 9px 20px rgba(79, 70, 229, 0.28);
+}
+
+.cancel-button:disabled,
+.publish-button:disabled {
+    opacity: 0.65;
+    cursor: not-allowed;
+}
+
+
+/* ============================================
+   LOADING
+============================================ */
+
+.create-spinner {
+    width: 16px;
+    height: 16px;
+    border: 2px solid rgba(255, 255, 255, 0.4);
+    border-top-color: white;
+    border-radius: 50%;
+    animation: create-spin 0.7s linear infinite;
+}
+
+@keyframes create-spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+
+/* ============================================
+   RESPONSIVE
+============================================ */
+
+@media (max-width: 800px) {
+
+    .create-opportunity-page {
+        padding: 20px;
+    }
+
+    .create-opportunity-header {
+        flex-direction: column;
+    }
+
+    .back-dashboard-button {
+        width: 100%;
+    }
+
+    .create-opportunity-card {
+        padding: 20px;
+    }
+
+    .opportunity-form {
+        grid-template-columns: 1fr;
+    }
+
+    .form-field.full-width {
+        grid-column: auto;
+    }
+
+    .form-actions {
+        grid-column: auto;
+        flex-direction: column-reverse;
+    }
+
+    .cancel-button,
+    .publish-button {
+        width: 100%;
+    }
+}
+
+@media (max-width: 500px) {
+
+    .create-opportunity-header h1 {
+        font-size: 25px;
+    }
+
+    .create-opportunity-card {
+        padding: 17px;
+    }
+
+    .form-card-heading {
+        align-items: flex-start;
+    }
+}
