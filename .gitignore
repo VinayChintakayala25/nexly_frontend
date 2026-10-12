@@ -24,3 +24,23 @@ pnpm-debug.log*
 # OS files
 .DS_Store
 Thumbs.db
+# Local application configuration
+src/main/resources/application.properties
+
+# Environment files
+.env
+.env.*
+
+# Build output
+target/
+
+# IntelliJ
+.idea/
+*.iml
+
+# VS Code
+.vscode/
+
+# OS files
+.DS_Store
+Thumbs.db

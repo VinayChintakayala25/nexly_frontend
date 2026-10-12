@@ -1,3 +1,4 @@
+
 .student-matching-page {
     width: 100%;
     max-width: 1200px;
@@ -233,9 +234,12 @@
 }
 
 .progress-fill {
+    display: block;
     height: 100%;
+    max-width: 100%;
     border-radius: 10px;
     background: #2563eb;
+    transition: width 0.5s ease;
 }
 
 .progress-fill.excellent {
