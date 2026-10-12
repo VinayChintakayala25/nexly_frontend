@@ -1,3 +1,4 @@
+
 import { useEffect, useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -8,378 +9,243 @@ import api from "../../services/api";
 import "./BrowseOpportunities.css";
 
 function BrowseOpportunities() {
-
     const navigate = useNavigate();
 
     const [opportunities, setOpportunities] = useState([]);
-
     const [loading, setLoading] = useState(true);
-
+    const [refreshing, setRefreshing] = useState(false);
     const [search, setSearch] = useState("");
-
     const [typeFilter, setTypeFilter] = useState("ALL");
-
-    const [workModeFilter, setWorkModeFilter] =
-        useState("ALL");
-
-    const [locationFilter, setLocationFilter] =
-        useState("");
-
+    const [workModeFilter, setWorkModeFilter] = useState("ALL");
+    const [locationFilter, setLocationFilter] = useState("");
     const [error, setError] = useState("");
 
     useEffect(() => {
         loadOpportunities();
     }, []);
 
-    // ==========================================
-    // LOAD OPPORTUNITIES
-    // ==========================================
-
     const loadOpportunities = async () => {
-
         try {
-
-            setLoading(true);
+            setRefreshing(true);
             setError("");
 
-            const response =
-                await api.get(
-                    "/opportunities"
-                );
+            const response = await api.get("/opportunities");
 
-            const data =
-                Array.isArray(response.data)
-                    ? response.data
-                    : [];
-
-            setOpportunities(data);
-
-        } catch (err) {
-
-            console.error(
-                "Opportunity loading error:",
-                err
+            setOpportunities(
+                Array.isArray(response.data) ? response.data : []
             );
-
+        } catch (err) {
+            console.error("Opportunity loading error:", err);
             setError(
                 err.response?.data?.message ||
                 "Unable to load opportunities."
             );
-
         } finally {
-
             setLoading(false);
+            setRefreshing(false);
         }
     };
 
-    // ==========================================
-    // FILTER
-    // ==========================================
+    // Handles dates with or without a time component.
+    const getDeadlineDate = (date) => {
+        if (!date) return null;
 
-    const filteredOpportunities =
-        useMemo(() => {
+        const parsed = new Date(date);
+        return Number.isNaN(parsed.getTime()) ? null : parsed;
+    };
 
-            const searchText =
-                search
-                    .trim()
-                    .toLowerCase();
+    const isExpired = (opportunity) => {
+        const deadline = getDeadlineDate(
+            opportunity.applicationDeadline
+        );
 
-            const locationText =
-                locationFilter
-                    .trim()
-                    .toLowerCase();
+        // Do not expire an opportunity that has no deadline.
+        if (!deadline) return false;
 
-            return opportunities.filter(
-                (opportunity) => {
+        return deadline.getTime() < Date.now();
+    };
 
-                    const title =
-                        opportunity.title
-                            ?.toLowerCase() || "";
+    const getOpportunityStatus = (opportunity) => {
+        if (isExpired(opportunity)) {
+            return "EXPIRED";
+        }
 
-                    const description =
-                        opportunity.description
-                            ?.toLowerCase() || "";
+        const status = String(
+            opportunity.status || "PUBLISHED"
+        ).toUpperCase();
 
-                    const company =
-                        opportunity.company
-                            ?.companyName
-                            ?.toLowerCase() || "";
+        if (["CLOSED", "EXPIRED", "CANCELLED"].includes(status)) {
+            return status;
+        }
 
-                    const location =
-                        opportunity.location
-                            ?.toLowerCase() || "";
+        if (["DRAFT", "PENDING"].includes(status)) {
+            return status;
+        }
 
-                    const type =
-                        opportunity.type
-                            ?.toLowerCase() || "";
+        return "OPEN";
+    };
 
-                    const workMode =
-                        opportunity.workMode
-                            ?.toLowerCase() || "";
+    const filteredOpportunities = useMemo(() => {
+        const searchText = search.trim().toLowerCase();
+        const locationText = locationFilter.trim().toLowerCase();
 
-                    const matchesSearch =
-                        !searchText ||
-                        title.includes(searchText) ||
-                        description.includes(searchText) ||
-                        company.includes(searchText) ||
-                        location.includes(searchText);
+        return opportunities.filter((opportunity) => {
+            const title = opportunity.title?.toLowerCase() || "";
+            const description =
+                opportunity.description?.toLowerCase() || "";
+            const company =
+                opportunity.company?.companyName?.toLowerCase() || "";
+            const location = opportunity.location?.toLowerCase() || "";
+            const type = opportunity.type?.toLowerCase() || "";
+            const workMode = opportunity.workMode?.toLowerCase() || "";
 
-                    const matchesType =
-                        typeFilter === "ALL" ||
-                        type ===
-                            typeFilter.toLowerCase();
+            const matchesSearch =
+                !searchText ||
+                title.includes(searchText) ||
+                description.includes(searchText) ||
+                company.includes(searchText) ||
+                location.includes(searchText);
 
-                    const matchesWorkMode =
-                        workModeFilter === "ALL" ||
-                        workMode ===
-                            workModeFilter.toLowerCase();
+            const matchesType =
+                typeFilter === "ALL" ||
+                type === typeFilter.toLowerCase();
 
-                    const matchesLocation =
-                        !locationText ||
-                        location.includes(
-                            locationText
-                        );
+            const matchesWorkMode =
+                workModeFilter === "ALL" ||
+                workMode === workModeFilter.toLowerCase();
 
-                    return (
-                        matchesSearch &&
-                        matchesType &&
-                        matchesWorkMode &&
-                        matchesLocation
-                    );
-                }
+            const matchesLocation =
+                !locationText || location.includes(locationText);
+
+            return (
+                matchesSearch &&
+                matchesType &&
+                matchesWorkMode &&
+                matchesLocation
             );
-
-        }, [
-            opportunities,
-            search,
-            typeFilter,
-            workModeFilter,
-            locationFilter
-        ]);
-
-    // ==========================================
-    // FORMAT DATE
-    // ==========================================
+        });
+    }, [
+        opportunities,
+        search,
+        typeFilter,
+        workModeFilter,
+        locationFilter
+    ]);
 
     const formatDeadline = (date) => {
+        if (!date) return "No deadline";
 
-        if (!date) {
-            return "No deadline";
-        }
+        const parsed = getDeadlineDate(date);
 
-        return new Date(date)
-            .toLocaleDateString(
-                "en-IN",
-                {
-                    day: "2-digit",
-                    month: "short",
-                    year: "numeric"
-                }
-            );
+        if (!parsed) return "Date unavailable";
+
+        return parsed.toLocaleDateString("en-IN", {
+            day: "2-digit",
+            month: "short",
+            year: "numeric"
+        });
     };
 
-    // ==========================================
-    // CLEAR FILTERS
-    // ==========================================
-
     const clearFilters = () => {
-
         setSearch("");
         setTypeFilter("ALL");
         setWorkModeFilter("ALL");
         setLocationFilter("");
     };
 
-    // ==========================================
-    // LOADING
-    // ==========================================
-
     if (loading) {
-
         return (
             <DashboardLayout>
-                <Loading
-                    text="Finding opportunities for you..."
-                />
+                <Loading text="Finding opportunities for you..." />
             </DashboardLayout>
         );
     }
 
     return (
         <DashboardLayout>
-
             <div className="browse-page">
-
-                {/* =================================
-                    HEADER
-                ================================= */}
-
                 <div className="browse-header">
-
                     <div>
-
-                        <span className="browse-eyebrow">
-                            DISCOVER
-                        </span>
-
-                        <h1>
-                            Find your next opportunity
-                        </h1>
-
+                        <span className="browse-eyebrow">DISCOVER</span>
+                        <h1>Find your next opportunity</h1>
                         <p>
-                            Explore internships, jobs and
-                            other opportunities that can help
-                            you move your career forward.
+                            Explore internships, jobs and other opportunities
+                            that can help you move your career forward.
                         </p>
-
                     </div>
 
-                    <div className="browse-header-icon">
-                        🔎
-                    </div>
-
+                    <div className="browse-header-icon">🔎</div>
                 </div>
-
-                {/* =================================
-                    ERROR
-                ================================= */}
 
                 {error && (
                     <div className="browse-alert">
                         <span>!</span>
                         {error}
+                        <button type="button" onClick={loadOpportunities}>
+                            Retry
+                        </button>
                     </div>
                 )}
 
-                {/* =================================
-                    SEARCH BAR
-                ================================= */}
-
                 <div className="browse-search-card">
-
                     <div className="main-search">
-
-                        <span>
-                            🔍
-                        </span>
-
+                        <span>🔍</span>
                         <input
                             type="text"
                             value={search}
-                            onChange={(e) =>
-                                setSearch(
-                                    e.target.value
-                                )
-                            }
+                            onChange={(e) => setSearch(e.target.value)}
                             placeholder="Search jobs, internships, companies or skills..."
                         />
 
                         {search && (
                             <button
                                 type="button"
-                                onClick={() =>
-                                    setSearch("")
-                                }
+                                onClick={() => setSearch("")}
                             >
                                 ×
                             </button>
                         )}
-
                     </div>
 
                     <div className="filter-row">
-
                         <div className="filter-field">
-
-                            <label>
-                                Opportunity Type
-                            </label>
-
+                            <label>Opportunity Type</label>
                             <select
                                 value={typeFilter}
-                                onChange={(e) =>
-                                    setTypeFilter(
-                                        e.target.value
-                                    )
-                                }
+                                onChange={(e) => setTypeFilter(e.target.value)}
                             >
-
-                                <option value="ALL">
-                                    All Types
-                                </option>
-
-                                <option value="INTERNSHIP">
-                                    Internship
-                                </option>
-
-                                <option value="JOB">
-                                    Job
-                                </option>
-
-                                <option value="PROJECT">
-                                    Project
-                                </option>
-
+                                <option value="ALL">All Types</option>
+                                <option value="INTERNSHIP">Internship</option>
+                                <option value="JOB">Job</option>
+                                <option value="PROJECT">Project</option>
                             </select>
-
                         </div>
 
                         <div className="filter-field">
-
-                            <label>
-                                Work Mode
-                            </label>
-
+                            <label>Work Mode</label>
                             <select
-                                value={
-                                    workModeFilter
-                                }
+                                value={workModeFilter}
                                 onChange={(e) =>
-                                    setWorkModeFilter(
-                                        e.target.value
-                                    )
+                                    setWorkModeFilter(e.target.value)
                                 }
                             >
-
-                                <option value="ALL">
-                                    All Modes
-                                </option>
-
-                                <option value="REMOTE">
-                                    Remote
-                                </option>
-
-                                <option value="HYBRID">
-                                    Hybrid
-                                </option>
-
-                                <option value="ONSITE">
-                                    On-site
-                                </option>
-
+                                <option value="ALL">All Modes</option>
+                                <option value="REMOTE">Remote</option>
+                                <option value="HYBRID">Hybrid</option>
+                                <option value="ONSITE">On-site</option>
                             </select>
-
                         </div>
 
                         <div className="filter-field">
-
-                            <label>
-                                Location
-                            </label>
-
+                            <label>Location</label>
                             <input
                                 type="text"
-                                value={
-                                    locationFilter
-                                }
+                                value={locationFilter}
                                 onChange={(e) =>
-                                    setLocationFilter(
-                                        e.target.value
-                                    )
+                                    setLocationFilter(e.target.value)
                                 }
                                 placeholder="e.g. Hyderabad"
                             />
-
                         </div>
 
                         <button
@@ -389,209 +255,144 @@ function BrowseOpportunities() {
                         >
                             Clear
                         </button>
-
                     </div>
-
                 </div>
 
-                {/* =================================
-                    RESULTS HEADER
-                ================================= */}
-
                 <div className="browse-results-header">
-
                     <div>
-
-                        <span>
-                            OPPORTUNITIES
-                        </span>
-
+                        <span>OPPORTUNITIES</span>
                         <h2>
-                            {filteredOpportunities.length}{" "}
-                            opportunities found
+                            {filteredOpportunities.length} opportunities found
                         </h2>
-
                     </div>
 
                     <button
                         type="button"
-                        onClick={
-                            loadOpportunities
-                        }
+                        onClick={loadOpportunities}
                         className="refresh-button"
+                        disabled={refreshing}
                     >
-                        ↻ Refresh
+                        {refreshing ? "Refreshing..." : "↻ Refresh"}
                     </button>
-
                 </div>
 
-                {/* =================================
-                    EMPTY
-                ================================= */}
-
-                {filteredOpportunities.length ===
-                0 ? (
-
+                {filteredOpportunities.length === 0 ? (
                     <div className="browse-empty">
-
-                        <div className="browse-empty-icon">
-                            🔎
-                        </div>
-
-                        <h2>
-                            No opportunities found
-                        </h2>
-
+                        <div className="browse-empty-icon">🔎</div>
+                        <h2>No opportunities found</h2>
                         <p>
-                            Try changing your search or
-                            removing some filters.
+                            Try changing your search or removing some filters.
                         </p>
-
-                        <button
-                            type="button"
-                            onClick={clearFilters}
-                        >
+                        <button type="button" onClick={clearFilters}>
                             Clear Filters
                         </button>
-
                     </div>
-
                 ) : (
-
-                    /* =================================
-                       OPPORTUNITY GRID
-                    ================================= */
-
                     <div className="opportunity-grid">
+                        {filteredOpportunities.map((opportunity) => {
+                            const companyName =
+                                opportunity.company?.companyName || "Company";
 
-                        {filteredOpportunities.map(
-                            (opportunity) => {
+                            const status = getOpportunityStatus(opportunity);
+                            const expired = status === "EXPIRED";
 
-                                const companyName =
-                                    opportunity.company
-                                        ?.companyName ||
-                                    "Company";
+                            const unavailable = [
+                                "EXPIRED",
+                                "CLOSED",
+                                "CANCELLED",
+                                "DRAFT",
+                                "PENDING"
+                            ].includes(status);
 
-                                return (
-
-                                    <div
-                                        className="opportunity-card"
-                                        key={
-                                            opportunity.id
-                                        }
-                                    >
-
-                                        {/* TOP */}
-
-                                        <div className="opportunity-top">
-
-                                            <div className="company-avatar">
-                                                {companyName
-                                                    .charAt(
-                                                        0
-                                                    )
-                                                    .toUpperCase()}
-                                            </div>
-
-                                            <div className="company-info">
-
-                                                <strong>
-                                                    {companyName}
-                                                </strong>
-
-                                                <span>
-                                                    {opportunity.location ||
-                                                        "Location not specified"}
-                                                </span>
-
-                                            </div>
-
-                                            <span className="opportunity-type">
-                                                {opportunity.type ||
-                                                    "Opportunity"}
-                                            </span>
-
+                            return (
+                                <div
+                                    className={`opportunity-card ${
+                                        unavailable ? "opportunity-card-closed" : ""
+                                    }`}
+                                    key={opportunity.id}
+                                >
+                                    <div className="opportunity-top">
+                                        <div className="company-avatar">
+                                            {companyName.charAt(0).toUpperCase()}
                                         </div>
 
-                                        {/* TITLE */}
-
-                                        <h3>
-                                            {opportunity.title}
-                                        </h3>
-
-                                        {/* DESCRIPTION */}
-
-                                        <p className="opportunity-description">
-
-                                            {opportunity.description
-                                                ? opportunity.description
-                                                      .length >
-                                                  135
-                                                    ? opportunity.description.substring(
-                                                          0,
-                                                          135
-                                                      ) + "..."
-                                                    : opportunity.description
-                                                : "No description provided."}
-
-                                        </p>
-
-                                        {/* META */}
-
-                                        <div className="opportunity-meta">
-
+                                        <div className="company-info">
+                                            <strong>{companyName}</strong>
                                             <span>
-                                                🏠{" "}
-                                                {opportunity.workMode ||
-                                                    "Not specified"}
-                                            </span>
-
-                                            <span>
-                                                📍{" "}
                                                 {opportunity.location ||
-                                                    "Not specified"}
+                                                    "Location not specified"}
                                             </span>
-
-                                            <span>
-                                                📅{" "}
-                                                {formatDeadline(
-                                                    opportunity.applicationDeadline
-                                                )}
-                                            </span>
-
                                         </div>
 
-                                        {/* FOOTER */}
-
-                                        <div className="opportunity-footer">
-
-                                            <span className="opportunity-status">
-                                                ● Open
-                                            </span>
-
-                                            <button
-                                                type="button"
-                                                onClick={() =>
-                                                    navigate(
-                                                        `/student/opportunities/${opportunity.id}`
-                                                    )
-                                                }
-                                            >
-                                                View Details →
-                                            </button>
-
-                                        </div>
-
+                                        <span className="opportunity-type">
+                                            {opportunity.type || "Opportunity"}
+                                        </span>
                                     </div>
-                                );
-                            }
-                        )}
 
+                                    <h3>{opportunity.title}</h3>
+
+                                    <p className="opportunity-description">
+                                        {opportunity.description
+                                            ? opportunity.description.length > 135
+                                                ? opportunity.description.substring(
+                                                      0,
+                                                      135
+                                                  ) + "..."
+                                                : opportunity.description
+                                            : "No description provided."}
+                                    </p>
+
+                                    <div className="opportunity-meta">
+                                        <span>
+                                            🏠 {opportunity.workMode || "Not specified"}
+                                        </span>
+                                        <span>
+                                            📍 {opportunity.location || "Not specified"}
+                                        </span>
+                                        <span>
+                                            📅 {formatDeadline(
+                                                opportunity.applicationDeadline
+                                            )}
+                                        </span>
+                                    </div>
+
+                                    <div className="opportunity-footer">
+                                        <span
+                                            className={`opportunity-status status-${status.toLowerCase()}`}
+                                        >
+                                            ● {
+                                                expired
+                                                    ? "Expired"
+                                                    : status === "OPEN"
+                                                    ? "Open"
+                                                    : status.charAt(0) +
+                                                      status.slice(1).toLowerCase()
+                                            }
+                                        </span>
+
+                                        <button
+                                            type="button"
+                                            onClick={() =>
+                                                navigate(
+                                                    `/student/opportunities/${opportunity.id}`
+                                                )
+                                            }
+                                        >
+                                            View Details →
+                                        </button>
+                                    </div>
+
+                                    {expired && (
+                                        <p className="expired-notice">
+                                            The application deadline has passed.
+                                        </p>
+                                    )}
+                                </div>
+                            );
+                        })}
                     </div>
                 )}
-
             </div>
-
         </DashboardLayout>
     );
 }
